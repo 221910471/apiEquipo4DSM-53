@@ -17,17 +17,19 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->longText('descripcion');
+            $table->string('description');
             $table->string('image');
-            $table->string('metatag');
-            $table->string('autor');
-            $table->datetime('date');
-            //declarar nuestra llaves foraneas dentro de l amigración
-            $table->unsignedBigInteger('user_id');
+            $table->text('extract');
+            $table->enum('status',[0,1,2])->default(0);
+            //declaramso nuestra llave foraneas
+            //$table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
+
+            //congifuramso nuestras llaves foranea
+            //$table->foreign('tag_id')->references('id')->on('tags');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
-
             $table->timestamps();
         });
     }

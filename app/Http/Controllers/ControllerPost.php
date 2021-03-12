@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\Http\Request;
-use App\Models\Category;
-
-class ControllerCategory extends Controller
+use App\Models\Post;
+class ControllerPost extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,10 @@ class ControllerCategory extends Controller
      */
     public function index()
     {
-        //utilizar el orm de laravel
-        $categories = Category::all();
-        //se retorna en un json para que las personas externas u otros sistemas se conecten a este aplicativo atraves de las peticiones
-        return response()->json($categories);
+        //
+            $post = Post::all();
+            //dd($post);
+            return response()->json(['posts'=> $post]);
     }
 
     /**
@@ -50,6 +49,8 @@ class ControllerCategory extends Controller
     public function show($id)
     {
         //
+        $post = Post::findOrfail($id);
+        return response()->json(['post' => $post]);
     }
 
     /**
@@ -84,5 +85,11 @@ class ControllerCategory extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function slider(){
+        //el  metodo take es para limitar el resultado
+        $posts = Post::all()->take(10);
+        return response()->json(['Posts' => $post]);
     }
 }
