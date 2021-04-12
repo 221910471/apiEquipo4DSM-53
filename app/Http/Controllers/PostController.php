@@ -134,4 +134,31 @@ class PostController extends Controller
         
     // }
 
+    // -------------------------funciones ya correctas como en la clase------------------------
+
+    //listar todos los post
+    public function index(){
+        $post = Post::all();
+        //dd($post);
+        return response()->json(['post' => $post]);
+
+    }
+    
+    // listar 5 post ara el slider
+    public function sliderPost(){
+        $sliderPost = Post::latest()
+        ->take(6)
+        ->orderBy('id', 'desc')
+        ->get();
+        //dd($post):
+        return response()->json(['sliderPost' => $sliderPost]);
+    }
+    //mostrar post individual detalle post
+    public function individual($id){
+        $post = Post::findOrfail($id);
+        //dd($post);
+        return response()->json(['post' => $post]);
+
+    }
+
 }

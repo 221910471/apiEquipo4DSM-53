@@ -42,3 +42,11 @@ Route::get('cuerpoPost/{id}','\App\Http\Controllers\PostController@cuerpoPost');
 Route::get('examenenpoint','\App\Http\Controllers\PostController@examenenpoint');
 
 Route::get('examenenpoint2','\App\Http\Controllers\PostController@examenenpoint2');
+
+// rutas basadas en lo visto en clase correctas
+
+Route::get('index', '\App\Http\Controllers\PostController@index');
+
+Route::get('sliderPost', '\App\Http\Controllers\PostController@sliderPost');
+
+Route::get('individual', '\App\Http\Controllers\PostController@individual');
